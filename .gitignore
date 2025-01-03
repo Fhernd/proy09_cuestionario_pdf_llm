@@ -1,0 +1,51 @@
+# Entorno virtual de Python
+venv/
+.env/
+.venv/
+env/
+ENV/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de configuración local y credenciales
+*.env
+*.secret
+
+# Archivos de log
+*.log
+logs/
+*.pid
+*.seed
+*.json
+
+# Configuración de IDEs
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Archivos creados por OS
+.DS_Store
+Thumbs.db
+
+# Archivos creados por herramientas
+*.egg
+*.egg-info/
+dist/
+build/
+*.spec
+
+# Archivos relacionados con Docker
+docker-compose.override.yml
+
+# Archivos de test y cobertura
+.tox/
+.nox/
+coverage/
+*.cover
+*.py,cover
+.hypothesis/
+pytest_cache/
+.cache/

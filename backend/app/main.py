@@ -3,6 +3,8 @@ from pydantic import BaseModel
 from typing import List
 from fastapi.responses import JSONResponse
 
+from .utils.utils import es_pdf_valido, extraer_texto_desde_pdf
+
 app = FastAPI()
 
 
@@ -24,7 +26,7 @@ async def preguntar(
     pdf_content = await pdf_file.read()
 
     text_summary = {
-        "total_lines": len(text_lines),
+        "total_lines": len(text_lines[0].split(',')),
         "example_line": text_lines[0] if text_lines else "No lines provided",
     }
 

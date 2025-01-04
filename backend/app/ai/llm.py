@@ -14,22 +14,31 @@ def inicializar_llm(ruta_modelo="models/gpt4all-lora-quantized.bin"):
     return GPT4All(model=ruta_modelo, n_ctx=512)
 
 
-def ask_question(knowledge_base, llm, user_question):
-    """Realiza una pregunta al LLM basada en fragmentos relevantes."""
-    # Buscar fragmentos relevantes en el índice
-    relevant_docs = knowledge_base.similarity_search(user_question, k=4)
+def preguntar(base_conocimiento, llm, pregunta):
+    """
+    Responde una pregunta basada en un contexto proporcionado.
+
+    Args:
+    base_conocimiento (DocumentIndex): El índice de documentos.
+    llm (GPT4All): El modelo de lenguaje.
+    pregunta (str): La pregunta a responder
+
+    Returns:
+    str: La respuesta generada por el modelo.
+    """
+
+    relevant_docs = base_conocimiento.similarity_search(pregunta, k=4)
     context = " ".join([doc.page_content for doc in relevant_docs])
 
-    # Crear el prompt para el LLM
     prompt = f"""
     Contexto del libro:
     {context}
 
     Pregunta del usuario:
-    {user_question}
+    {pregunta}
 
     Responde de manera clara y concisa basada únicamente en el contexto proporcionado.
     """
-    # Generar respuesta
+    
     response = llm(prompt)
     return response.strip()

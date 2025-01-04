@@ -3,9 +3,13 @@ from pydantic import BaseModel
 from typing import List
 from fastapi.responses import JSONResponse
 
-from .utils.utils import es_pdf_valido, extraer_texto_desde_pdf
+from .utils.utils import crear_base_conocimiento, es_pdf_valido, extraer_texto_desde_pdf, particionar_texto_partes
+from .ai.llm import inicializar_llm, preguntar
 
 app = FastAPI()
+
+llm = inicializar_llm()
+knowledge_base = None
 
 
 @app.get("/")
@@ -22,16 +26,19 @@ async def preguntar(
         return JSONResponse(
             status_code=400, content={"error": "Sólo se permiten archivos PDF"}
         )
+    global knowledge_base
 
     pdf_content = await pdf_file.read()
+    texto_pdf = extraer_texto_desde_pdf(pdf_content)
 
-    text_summary = {
-        "total_lines": len(text_lines[0].split(',')),
-        "example_line": text_lines[0] if text_lines else "No lines provided",
-    }
+    partes = particionar_texto_partes(texto_pdf)
+    base_conocimiento = crear_base_conocimiento(partes)
 
-    return {
-        "filename": pdf_file.filename,
-        "content_type": pdf_file.content_type,
-        "text_summary": text_summary,
-    }
+    preguntas = text_lines[0].split(',')
+    respuestas = {}
+
+    for p in preguntas:
+        respuesta = preguntar(base_conocimiento, llm, p)
+        respuestas[p] = respuesta
+
+    return respuestas

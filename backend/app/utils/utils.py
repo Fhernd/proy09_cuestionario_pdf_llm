@@ -2,6 +2,8 @@ from io import BytesIO
 
 from PyPDF2 import PdfReader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain.vectorstores import FAISS
+from langchain.embeddings import HuggingFaceEmbeddings
 
 
 def es_pdf_valido(tipo_contenido: str) -> bool:
@@ -54,3 +56,18 @@ def particionar_texto_partes(texto, tamanio_parte=1000, parte_empate=200):
         chunk_size=tamanio_parte, chunk_overlap=parte_empate
     )
     return splitter.split_text(texto)
+
+
+def crear_base_conocimiento(partes):
+    """
+    Crea una base de conocimiento a partir de las partes de un texto.
+    
+    Args:
+    partes (List[str]): Las partes del texto.
+
+    Returns:
+    FAISS: La base de conocimiento.
+    """
+    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    knowledge_base = FAISS.from_texts(partes, embeddings)
+    return knowledge_base

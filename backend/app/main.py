@@ -8,7 +8,8 @@ from .ai.llm import inicializar_llm, preguntar
 
 app = FastAPI()
 
-llm = inicializar_llm()
+# llm = inicializar_llm()
+llm = None
 knowledge_base = None
 
 

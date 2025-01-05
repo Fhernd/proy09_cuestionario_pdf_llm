@@ -1,4 +1,4 @@
-from langchain.llms import GPT4All
+from langchain_community.llms import GPT4All
 
 
 def inicializar_llm(ruta_modelo="models/gpt4all-lora-quantized.bin"):

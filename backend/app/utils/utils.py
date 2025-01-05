@@ -1,7 +1,7 @@
 from io import BytesIO
 
 from PyPDF2 import PdfReader
-from langchain_community.text_splitters import RecursiveCharacterTextSplitter  # Actualizado
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS  # Actualizado
 from langchain_community.embeddings import HuggingFaceEmbeddings  # Actualizado
 

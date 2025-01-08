@@ -19,7 +19,7 @@ def home():
 
 
 @app.post("/preguntar/")
-async def preguntar(
+async def preguntar_post(
     pdf_file: UploadFile = File(...),
     text_lines: List[str] = Form(...)
 ):

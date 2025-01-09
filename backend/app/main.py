@@ -15,6 +15,12 @@ knowledge_base = None
 
 @app.get("/")
 def home():
+    """
+    Ruta de inicio de la API.
+
+    Returns:
+    Dict[str, str]: Un diccionario con un mensaje de bienvenida.
+    """
     return {'mensaje': 'Bienvenido a la API de PDF LLM'}
 
 
@@ -23,6 +29,16 @@ async def preguntar_post(
     pdf_file: UploadFile = File(...),
     text_lines: List[str] = Form(...)
 ):
+    """
+    Responde preguntas basadas en un archivo PDF.
+
+    Args:
+    pdf_file (UploadFile): El archivo PDF con el contenido.
+    text_lines (List[str]): Las preguntas a responder.
+
+    Returns:
+    Dict[str, str]: Un diccionario con las respuestas a las preguntas.
+    """
     if not es_pdf_valido(pdf_file.content_type):
         return JSONResponse(
             status_code=400, content={"error": "Sólo se permiten archivos PDF"}

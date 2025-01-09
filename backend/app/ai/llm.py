@@ -1,7 +1,7 @@
 from langchain_community.llms import GPT4All
 
 
-def inicializar_llm(ruta_modelo="models/gpt4all-lora-quantized.bin"):
+def inicializar_llm(ruta_modelo=r"E:\Dev\proy09_cuestionario_pdf_llm\backend\llms\gpt4all-lora-quantized.bin"):
     """
     Inicializa un modelo de lenguaje.
 

@@ -2,8 +2,8 @@ from io import BytesIO
 
 from PyPDF2 import PdfReader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import FAISS  # Actualizado
-from langchain_community.embeddings import HuggingFaceEmbeddings  # Actualizado
+from langchain_community.vectorstores import FAISS
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
 
 def es_pdf_valido(tipo_contenido: str) -> bool:

@@ -23,11 +23,13 @@ async def preguntar_post(
     pdf_file: UploadFile = File(...),
     text_lines: List[str] = Form(...)
 ):
-    if pdf_file.content_type != "application/pdf":
+    if not es_pdf_valido(pdf_file.content_type):
         return JSONResponse(
             status_code=400, content={"error": "Sólo se permiten archivos PDF"}
         )
     global knowledge_base
+
+    llm = inicializar_llm()
 
     pdf_content = await pdf_file.read()
     texto_pdf = extraer_texto_desde_pdf(pdf_content)

@@ -1,0 +1,8 @@
+Collecting sentence-transformers==2.2.2
+  Using cached sentence-transformers-2.2.2.tar.gz (85 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'

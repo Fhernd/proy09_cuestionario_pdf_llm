@@ -1,5 +1,4 @@
 from fastapi import FastAPI, File, UploadFile, Form
-from pydantic import BaseModel
 from typing import List
 from fastapi.responses import JSONResponse
 
@@ -8,8 +7,8 @@ from .ai.llm import inicializar_llm, preguntar
 
 app = FastAPI()
 
-# llm = inicializar_llm()
 llm = None
+# llm = inicializar_llm()
 knowledge_base = None
 
 

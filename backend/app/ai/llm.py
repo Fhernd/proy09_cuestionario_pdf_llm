@@ -11,7 +11,7 @@ def inicializar_llm(ruta_modelo=r"E:\Dev\proy09_cuestionario_pdf_llm\backend\llm
     Returns:
     GPT4All: El modelo de lenguaje.
     """
-    return GPT4All(model=ruta_modelo, n_ctx=512)
+    return GPT4All(model=ruta_modelo, n_ctx=512, backend="gptj")
 
 
 def preguntar(base_conocimiento, llm, pregunta):

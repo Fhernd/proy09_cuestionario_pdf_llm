@@ -1,7 +1,7 @@
 from langchain_community.llms import GPT4All
 
 
-def inicializar_llm(ruta_modelo=r"E:\Dev\proy09_cuestionario_pdf_llm\backend\llms\gpt4all-lora-quantized.bin"):
+def inicializar_llm():
     """
     Inicializa un modelo de lenguaje.
 
@@ -11,7 +11,9 @@ def inicializar_llm(ruta_modelo=r"E:\Dev\proy09_cuestionario_pdf_llm\backend\llm
     Returns:
     GPT4All: El modelo de lenguaje.
     """
-    return GPT4All(model=ruta_modelo, n_ctx=512, backend="gptj")
+    model_path=r'E:\Dev\proy09_cuestionario_pdf_llm\backend\llms'
+    print('model_path:', model_path)
+    return GPT4All(model='qwen2-1_5b-instruct-q4_0.gguf')
 
 
 def preguntar(base_conocimiento, llm, pregunta):

@@ -45,13 +45,13 @@ async def preguntar_post(
     global knowledge_base
 
     llm = inicializar_llm()
-
+    print('ANTES del leer el PDF')
     pdf_content = await pdf_file.read()
     texto_pdf = extraer_texto_desde_pdf(pdf_content)
-
+    print('DESPUÉS del leer el PDF')
     partes = particionar_texto_partes(texto_pdf)
     base_conocimiento = crear_base_conocimiento(partes)
-
+    print('DESPUÉS DEL PARTICIONAMIENTO')
     preguntas = text_lines[0].split(',')
     respuestas = {}
 

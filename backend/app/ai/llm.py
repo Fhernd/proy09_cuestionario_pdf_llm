@@ -13,7 +13,7 @@ def inicializar_llm():
     """
     model_path=r'E:\Dev\proy09_cuestionario_pdf_llm\backend\llms'
     print('model_path:', model_path)
-    return GPT4All(model='qwen2-1_5b-instruct-q4_0.gguf')
+    return GPT4All(model='orca-mini-3b-gguf2-q4_0.gguf')
 
 
 def preguntar(base_conocimiento, llm, pregunta):

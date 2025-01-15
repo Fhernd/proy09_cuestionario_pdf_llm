@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-2xl mx-auto p-6">
-    <h1 class="text-2xl font-bold mb-4">Pregunta a la API</h1>
+    <h1 class="text-center text-4xl font-bold text-red-500 bg-yellow-200 p-4 rounded-lg shadow-lg mb-5">Pregunta a la API</h1>
     <SubidaArchivo @file-selected="handleFileUpload" />
     <ListaPreguntas v-model="questions" />
     <button
@@ -78,3 +78,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.titulo {
+  text-align: center;
+  color: #ff6347; /* Tomate */
+  background-color: #f0e68c; /* Amarillo claro */
+  padding: 10px;
+  border-radius: 5px;
+}
+</style>

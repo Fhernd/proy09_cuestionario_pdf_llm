@@ -11,7 +11,7 @@
         @click="$emit('remove')"
         class="bg-red-500 text-white px-3 py-2 rounded hover:bg-red-600"
       >
-        X
+      <i class="fas fa-trash-alt"></i>
       </button>
     </div>
   </template>

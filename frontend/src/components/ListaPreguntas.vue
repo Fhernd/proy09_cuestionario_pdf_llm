@@ -8,7 +8,7 @@
       </div>
       <button
         @click="addQuestion"
-        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mb-4"
+        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mb-4 w-full"
       >
       <i class="fas fa-plus"></i> Agregar pregunta
       </button>

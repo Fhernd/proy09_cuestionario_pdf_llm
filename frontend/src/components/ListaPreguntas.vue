@@ -30,6 +30,8 @@
       questions: {
         deep: true,
         handler(newVal) {
+          console.log('ListaPreguntas > newVal', newVal);
+          
           this.$emit("update:value", newVal);
         },
       },

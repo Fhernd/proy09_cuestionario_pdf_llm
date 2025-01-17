@@ -26,6 +26,8 @@
     },
     methods: {
       validateInput() {
+        console.log('PreguntaInput > this.questionText', this.questionText);
+        
         this.$emit("update:value", this.questionText);
       },
     },

@@ -47,6 +47,8 @@ export default {
     };
 
     const submitQuestions = async () => {
+      console.log('questions', questions.value);
+      
       if (questions.value.some((q) => !q.trim())) {
         alert("Todos los campos deben contener una pregunta.");
         return;
@@ -59,6 +61,8 @@ export default {
 
       preguntarServicio(selectedFile.value, questions.value)
         .then((res) => {
+          console.log('res', res);
+          
           responses.value = res.data;
         })
         .catch((err) => {

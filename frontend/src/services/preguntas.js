@@ -1,4 +1,4 @@
-import apiClient from "@/api/apiClient";
+import apiClient from "./apiClient";
 
 /**
  * Servicio para enviar preguntas y un archivo PDF a la API.

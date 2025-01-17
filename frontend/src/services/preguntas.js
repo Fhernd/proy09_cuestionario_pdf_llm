@@ -10,22 +10,16 @@ import apiClient from "@/api/apiClient";
  */
 export async function preguntarServicio(pdfFile, questions) {
   const formData = new FormData();
-
-  // Adjuntar el archivo PDF
   formData.append("pdf_file", pdfFile);
-
-  // Adjuntar las preguntas como un array de strings
   formData.append("text_lines", JSON.stringify(questions));
 
   try {
-    // Usar apiClient para realizar la solicitud
     const response = await apiClient.post("/preguntar/", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
 
-    // Devolver las respuestas de la API
     return response.data;
   } catch (error) {
     console.error("Error al interactuar con la API:", error);

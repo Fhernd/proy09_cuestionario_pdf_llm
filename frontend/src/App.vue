@@ -30,9 +30,10 @@
 
 <script>
 import { ref } from "vue";
-import axios from "axios";
+
 import SubidaArchivo from "./components/SubidaArchivo.vue";
 import ListaPreguntas from "./components/ListaPreguntas.vue";
+import { preguntarServicio } from "./services/preguntas";
 
 export default {
   components: { SubidaArchivo, ListaPreguntas },
@@ -56,25 +57,14 @@ export default {
         return;
       }
 
-      const formData = new FormData();
-      formData.append("file", selectedFile.value);
-      formData.append("questions", JSON.stringify(questions.value));
-
-      try {
-        const { data } = await axios.post(
-          "http://localhost:5000/api/questions",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-        responses.value = data.responses;
-      } catch (error) {
-        console.error("Error al enviar las preguntas:", error);
-        alert("Ocurrió un error al procesar las preguntas.");
-      }
+      preguntarServicio(selectedFile.value, questions.value)
+        .then((res) => {
+          responses.value = res.data;
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("Ocurrió un error al enviar las preguntas.");
+        });
     };
 
     return {

@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     validateInput() {
-      this.$emit("update:value", this.questionText);
+      this.$emit("pregunta-cambiada", this.questionText);
     },
   },
 };

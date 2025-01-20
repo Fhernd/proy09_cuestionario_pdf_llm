@@ -35,7 +35,12 @@ export default {
       this.questions.push("");
     },
     removeQuestion(index) {
-      this.questions.splice(index, 1);
+      console.log(this.questions);
+      
+      console.log("ListaPreguntas > removeQuestion > index", index);
+      
+      const d = this.questions.splice(index, 1);
+      console.log("ListaPreguntas > removeQuestion > d", d);
     },
     cambiarPregunta(index, pregunta) {
       console.log("ListaPreguntas > cambiarPersona > index", index);

@@ -4,7 +4,7 @@
       Pregunta a la API
     </h1>
     <SubidaArchivo @file-selected="handleFileUpload" />
-    <ListaPreguntas v-model="questions" />
+    <ListaPreguntas v-model="questions" @pregunta-cambiada="cambiarPregunta" />
     <button
       @click="submitQuestions"
       class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mt-4 w-full"
@@ -46,6 +46,10 @@ export default {
       selectedFile.value = file;
     };
 
+    const cambiarPregunta = (index, pregunta) => {
+      questions.value[index] = pregunta;
+    };
+
     const submitQuestions = async () => {
       console.log('questions', questions.value);
       
@@ -77,6 +81,7 @@ export default {
       responses,
       handleFileUpload,
       submitQuestions,
+      cambiarPregunta,
     };
   },
 };

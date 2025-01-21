@@ -43,11 +43,11 @@ export default {
       console.log("ListaPreguntas > removeQuestion > d", d);
     },
     cambiarPregunta(index, pregunta) {
-      console.log("ListaPreguntas > cambiarPersona > index", index);
-      console.log("ListaPreguntas > cambiarPersona > pregunta", pregunta);
+      console.log("ListaPreguntas > cambiarPregunta > index", index);
+      console.log("ListaPreguntas > cambiarPregunta > pregunta", pregunta);
       console.log();
       
-      this.$emit("pregunta-cambiada", this.questions);
+      this.$emit("pregunta-cambiada", index, pregunta);
     },
   },
 };

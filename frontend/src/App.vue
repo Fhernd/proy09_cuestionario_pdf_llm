@@ -26,7 +26,7 @@
       </ul>
     </div>
 
-    <loading v-model:active="isLoading"
+    <Loading v-model:active="isLoading"
                  :can-cancel="true"
                  :on-cancel="onCancel"
                  :is-full-page="true"/>
@@ -100,7 +100,8 @@ export default {
       handleFileUpload,
       submitQuestions,
       cambiarPregunta,
-      isLoading
+      isLoading,
+      onCancel
     };
   },
 };

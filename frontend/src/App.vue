@@ -25,11 +25,19 @@
         </li>
       </ul>
     </div>
+
+    <loading v-model:active="isLoading"
+                 :can-cancel="true"
+                 :on-cancel="onCancel"
+                 :is-full-page="true"/>
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
+
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
 
 import SubidaArchivo from "./components/SubidaArchivo.vue";
 import ListaPreguntas from "./components/ListaPreguntas.vue";
@@ -41,6 +49,7 @@ export default {
     const questions = ref([""]);
     const selectedFile = ref(null);
     const responses = ref([]);
+    const isLoading = ref(false);
 
     const handleFileUpload = (file) => {
       selectedFile.value = file;
@@ -50,6 +59,11 @@ export default {
       questions.value[index] = pregunta;
     };
 
+    const onCancel = () => {
+      console.log('onCancel');
+      isLoading.value = false;
+    };
+
     const submitQuestions = async () => {
       console.log('questions', questions.value);
       
@@ -57,19 +71,23 @@ export default {
         alert("Todos los campos deben contener una pregunta.");
         return;
       }
-
+      
       if (!selectedFile.value) {
         alert("Debes seleccionar un archivo PDF.");
         return;
       }
+      
+      isLoading.value = true;
 
       preguntarServicio(selectedFile.value, questions.value)
         .then((res) => {
           console.log('res', res);
           
+          isLoading.value = false;
           responses.value = res.data;
         })
         .catch((err) => {
+          isLoading.value = false;
           console.error(err);
           alert("Ocurrió un error al enviar las preguntas.");
         });
@@ -82,6 +100,7 @@ export default {
       handleFileUpload,
       submitQuestions,
       cambiarPregunta,
+      isLoading
     };
   },
 };

@@ -13,17 +13,7 @@
     </button>
     <div v-if="responses.length" class="mt-6">
       <h2 class="text-xl font-bold mb-4">Respuestas:</h2>
-      <ul>
-        <li
-          v-for="(response, index) in responses"
-          :key="index"
-          class="mb-2 p-2 border border-gray-300 rounded"
-        >
-          <strong>Pregunta {{ index + 1 }}:</strong> {{ response.question }}
-          <br />
-          <strong>Respuesta:</strong> {{ response.answer }}
-        </li>
-      </ul>
+      <ResponsesList :responses="responses" />
     </div>
 
     <Loading v-model:active="isLoading"

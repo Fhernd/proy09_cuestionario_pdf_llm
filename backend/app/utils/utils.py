@@ -40,7 +40,7 @@ def extraer_texto_desde_pdf(pdf: bytes) -> str:
         raise ValueError(f"Error al leer el PDF: {e}")
 
 
-def particionar_texto_partes(texto, tamanio_parte=1000, parte_empate=200):
+def particionar_texto_partes(texto, tamanio_parte=500, parte_empate=100):
     """
     Particiona un texto en partes más pequeñas.
 

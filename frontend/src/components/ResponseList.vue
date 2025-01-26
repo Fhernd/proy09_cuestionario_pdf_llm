@@ -1,19 +1,18 @@
 <template>
     <div v-if="Object.keys(responses).length" class="mt-6">
         <ul>
-            <li v-for="(response, key) in responses" :key="key"
-                class="mb-2 p-4 border border-gray-300 rounded bg-gray-50 shadow-sm">
-                <strong class="text-gray-700">Pregunta {{ key }}:</strong>
-                <p class="text-gray-800 ml-4">{{ response.question }}</p>
-                <strong class="text-gray-700 mt-2 block">Respuesta:</strong>
-                <p class="text-gray-800 ml-4">{{ response.answer }}</p>
-            </li>
+            <ResponseItem v-for="(response, key) in responses" :key="key" :response="response" />
         </ul>
     </div>
 </template>
 
 <script>
+import ResponseItem from './ResponseItem.vue';
+
 export default {
+    components: {
+        ResponseItem,
+    },
     props: {
         responses: {
             type: Object,

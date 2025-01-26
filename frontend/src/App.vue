@@ -5,21 +5,15 @@
     </h1>
     <SubidaArchivo @file-selected="handleFileUpload" />
     <ListaPreguntas v-model="questions" @pregunta-cambiada="cambiarPregunta" />
-    <button
-      @click="submitQuestions"
-      class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mt-4 w-full"
-    >
+    <button @click="submitQuestions" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mt-4 w-full">
       Preguntar
     </button>
-    <div v-if="responses.length" class="mt-6">
+    <div v-if="Object.keys(responses).length" class="mt-6">
       <h2 class="text-xl font-bold mb-4">Respuestas:</h2>
       <ResponsesList :responses="responses" />
     </div>
 
-    <Loading v-model:active="isLoading"
-                 :can-cancel="true"
-                 :on-cancel="onCancel"
-                 :is-full-page="true"/>
+    <Loading v-model:active="isLoading" :can-cancel="true" :on-cancel="onCancel" :is-full-page="true" />
   </div>
 </template>
 
@@ -38,7 +32,7 @@ export default {
   setup() {
     const questions = ref([""]);
     const selectedFile = ref(null);
-    const responses = ref([]);
+    const responses = ref({});
     const isLoading = ref(false);
 
     const handleFileUpload = (file) => {
@@ -56,23 +50,23 @@ export default {
 
     const submitQuestions = async () => {
       console.log('questions', questions.value);
-      
+
       if (questions.value.some((q) => !q.trim())) {
         alert("Todos los campos deben contener una pregunta.");
         return;
       }
-      
+
       if (!selectedFile.value) {
         alert("Debes seleccionar un archivo PDF.");
         return;
       }
-      
+
       isLoading.value = true;
 
       preguntarServicio(selectedFile.value, questions.value)
         .then((res) => {
           console.log('res', res);
-          
+
           isLoading.value = false;
           responses.value = res.data;
         })
@@ -100,8 +94,10 @@ export default {
 <style scoped>
 .titulo {
   text-align: center;
-  color: #ff6347; /* Tomate */
-  background-color: #f0e68c; /* Amarillo claro */
+  color: #ff6347;
+  /* Tomate */
+  background-color: #f0e68c;
+  /* Amarillo claro */
   padding: 10px;
   border-radius: 5px;
 }

@@ -1,10 +1,10 @@
 <template>
-    <div v-if="responses.length" class="mt-6">
+    <div v-if="Object.keys(responses).length" class="mt-6">
         <h2 class="text-xl font-bold mb-4">Respuestas:</h2>
         <ul>
-            <li v-for="(response, index) in responses" :key="index"
+            <li v-for="(response, key) in responses" :key="key"
                 class="mb-2 p-4 border border-gray-300 rounded bg-gray-50 shadow-sm">
-                <strong class="text-gray-700">Pregunta {{ index + 1 }}:</strong>
+                <strong class="text-gray-700">Pregunta {{ key }}:</strong>
                 <p class="text-gray-800 ml-4">{{ response.question }}</p>
                 <strong class="text-gray-700 mt-2 block">Respuesta:</strong>
                 <p class="text-gray-800 ml-4">{{ response.answer }}</p>
@@ -18,7 +18,7 @@ export default {
     name: "ResponsesList",
     props: {
         responses: {
-            type: Array,
+            type: Object,
             required: true,
         },
     },

@@ -1,7 +1,7 @@
 <template>
     <div v-if="Object.keys(responses).length" class="mt-6">
         <ul>
-            <ResponseItem v-for="(response, key) in responses" :key="key" :response="response" />
+            <ResponseItem v-for="(response, key) in responses" :itemKey="key" :response="response" />
         </ul>
     </div>
 </template>

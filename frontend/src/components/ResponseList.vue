@@ -1,6 +1,5 @@
 <template>
     <div v-if="Object.keys(responses).length" class="mt-6">
-        <h2 class="text-xl font-bold mb-4">Respuestas:</h2>
         <ul>
             <li v-for="(response, key) in responses" :key="key"
                 class="mb-2 p-4 border border-gray-300 rounded bg-gray-50 shadow-sm">
@@ -15,7 +14,6 @@
 
 <script>
 export default {
-    name: "ResponsesList",
     props: {
         responses: {
             type: Object,

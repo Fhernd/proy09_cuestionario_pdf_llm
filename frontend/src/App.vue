@@ -10,7 +10,7 @@
     </button>
     <div v-if="Object.keys(responses).length" class="mt-6">
       <h2 class="text-xl font-bold mb-4">Respuestas:</h2>
-      <ResponsesList :responses="responses" />
+      <ResponseList :responses="responses" />
     </div>
 
     <Loading v-model:active="isLoading" :can-cancel="true" :on-cancel="onCancel" :is-full-page="true" />
@@ -25,10 +25,11 @@ import 'vue-loading-overlay/dist/css/index.css';
 
 import SubidaArchivo from "./components/SubidaArchivo.vue";
 import ListaPreguntas from "./components/ListaPreguntas.vue";
+import ResponseList from "./components/ResponseList.vue";
 import { preguntarServicio } from "./services/preguntas";
 
 export default {
-  components: { SubidaArchivo, ListaPreguntas },
+  components: { SubidaArchivo, ListaPreguntas, ResponseList, Loading },
   setup() {
     const questions = ref([""]);
     const selectedFile = ref(null);

@@ -1,11 +1,22 @@
 from fastapi import FastAPI, File, UploadFile, Form
 from typing import List
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 from .utils.utils import crear_base_conocimiento, es_pdf_valido, extraer_texto_desde_pdf, particionar_texto_partes
 from .ai.llm import inicializar_llm, preguntar
 
 app = FastAPI()
+
+origins = [ "http://localhost:5173", "http://localhost:8000"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 llm = None
 # llm = inicializar_llm()

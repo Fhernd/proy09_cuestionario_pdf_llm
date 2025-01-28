@@ -69,7 +69,7 @@ export default {
           console.log('res', res);
 
           isLoading.value = false;
-          responses.value = res.data;
+          responses.value = res;
         })
         .catch((err) => {
           isLoading.value = false;

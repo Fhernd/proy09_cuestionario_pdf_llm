@@ -3,7 +3,7 @@
         <strong class="text-gray-700">Pregunta:</strong>
         <p class="text-gray-800 ml-4">{{ itemKey }}</p>
         <strong class="text-gray-700 mt-2 block">Respuesta:</strong>
-        <p class="text-gray-800 ml-4">{{ response[itemKey] }}</p>
+        <p class="text-gray-800 ml-4">{{ response }}</p>
     </li>
 </template>
 
